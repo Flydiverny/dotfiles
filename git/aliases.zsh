@@ -3,29 +3,53 @@ if which hub >/dev/null 2>&1; then
 	alias git='hub'
 fi
 
-alias gl='git pull --prune'
-alias glg="git log --graph --decorate --oneline --abbrev-commit"
-alias glga="glg --all"
-alias gp='git push origin HEAD'
-alias gpa='git push origin --all'
-alias gd='git diff'
-alias gc='git commit'
-alias gca='git commit -a'
-alias gco='git checkout'
-alias gb='git branch -v'
-alias ga='git add'
-alias gaa='git add -A'
-alias gcm='git commit -m'
-alias gcam='git commit -a -m'
+_gdnfzf() {
+	file=$(
+		git diff --name-only $* | fzf -d 10
+	) || return
+	rootDir=$(git rev-parse --show-toplevel)
+	echo "$rootDir/$file"
+}
+
 alias gs='git status -sb'
-alias gpr='gp && git pr'
+
+alias gl="git log --graph --decorate --abbrev-commit --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gr="git pull -r"
+alias gp="gr && git push && git link"
+alias gdc="git diff --cached"
+alias gd='git diff'
+alias gc="git commit -m"
+#alias gb='git branch -v'
+alias gaa="git add -A && gs"
 alias glnext='git log --oneline $(git describe --tags --abbrev=0 @^)..@'
 
-if which svu >/dev/null 2>&1; then
-	alias gtpatch='echo `svu p`; git tag `svu p`'
-	alias gtminor='echo `svu m`; git tag `svu m`'
-fi
+alias gdw="git diff --ignore-space-at-eol -b -w --ignore-blank-lines"
+alias gdcw="gdw --cached"
+
+alias gcb='git checkout $(git branch | fzf -d 10)'
+alias gcf='git checkout -- $(_gdnfzf) && clear && gs'
+alias grf='git reset HEAD $(_gdnfzf --cached) && gs'
+
+alias gsp="git stash && gr"
+alias gspp="gsp && git stash pop"
+
+alias gnb="git checkout -b"
+
+alias gaf='git add $(_gdnfzf) && gs'
+alias gdf='git diff $(_gdnfzf)'
+alias gdfc='git diff --cached $(_gdnfzf --cached)'
+
+alias stash="git stash"
+alias master="git checkout master"
+
+alias gsm="git stash && git checkout master"
 
 gi() {
 	curl -s "https://www.gitignore.io/api/$*"
 }
+
+_gitaddfun() {
+	git add $*
+}
+
+alias ga="noglob _gitaddfun && gs"
