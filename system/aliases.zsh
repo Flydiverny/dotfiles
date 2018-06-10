@@ -25,6 +25,10 @@ alias grep="grep --color=auto"
 alias duf="du -sh * | sort -hr"
 alias less="less -r"
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 # quick hack to make watch work with aliases
 alias watch='watch '
 
