@@ -1,0 +1,30 @@
+{
+  "Print to console with arg": {
+    "prefix": "log",
+    "body": [
+      "console.log('$1', $1);"
+    ],
+    "description": "Log output to console"
+  },
+  "Print to console": {
+    "prefix": "loge",
+    "body": [
+      "console.log('$1');"
+    ],
+    "description": "Log output to console"
+  },
+  "return log": {
+    "prefix": "_rlog",
+    "body": [
+      "function rlog(...params) { console.log(...params); return params[params.length - 1]; }"
+    ],
+    "description": "return log"
+  },
+  "conditional log": {
+    "prefix": "clog",
+    "body": [
+      "function clog(condition, ...params) { if (condition) { console.log(...params); } return params[params.length - 1]; }"
+    ],
+    "description": "conditional log"
+  }
+}

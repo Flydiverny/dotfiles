@@ -7,24 +7,20 @@
   "editor.tabSize": 4,
   "editor.trimAutoWhitespace": true,
   "editor.tabCompletion": true,
-  "explorer.openEditors.visible": 0,
+  "explorer.openEditors.visible": 5,
   "window.restoreWindows": "none",
   "terminal.external.osxExec": "iTerm.app",
   "files.autoSave": "onFocusChange",
   "extensions.autoUpdate": true,
-  "workbench.iconTheme": "ayu",
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "solid",
   "window.title": "${activeEditorMedium}${separator}${rootName}",
   "files.trimTrailingWhitespace": true,
-  "editor.minimap.enabled": false,
+  "editor.minimap.enabled": true,
   "editor.renderWhitespace": "boundary",
-  "workbench.colorTheme": "Ayu Mirage",
+  "workbench.colorTheme": "One Dark+ (Sublime)",
   "window.zoomLevel": 0,
   "extensions.ignoreRecommendations": false,
-  "go.coverageDecorator": {
-    "type": "gutter"
-  },
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
@@ -35,21 +31,13 @@
   "editor.fontWeight": "300",
   "docker.showExplorer": false,
   "workbench.editor.showIcons": true,
-  "go.testOnSave": false,
-  "go.coverOnSave": false,
   "explorer.confirmDragAndDrop": false,
   "search.smartCase": true,
   "editor.fontFamily": "FuraCode Nerd Font, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "bracketPairColorizer.showVerticalScopeLine": false,
-  "bracketPairColorizer.showHorizontalScopeLine": false,
-  "files.associations": {
-    "*.tmpl": "gotemplate"
-  },
-  "go.lintTool": "golangci-lint",
-  "go.useLanguageServer": true,
-  "go.languageServerExperimentalFeatures": {
-    "format": false,
-    "autoComplete": true
+  "gitlens.historyExplorer.enabled": true,
+  "workbench.iconTheme": "vscode-icons",
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
   }
 }
