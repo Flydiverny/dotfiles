@@ -47,3 +47,13 @@ if [ "$(uname -s)" != "Darwin" ]; then
 		alias open="xdg-open"
 	fi
 fi
+
+# fh - repeat history
+fh() {
+	print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+# alias hist='history | grep' # requires an argument
+alias hist="fh"
+
+alias psg='ps -Af | grep'
+alias ping='ping -c 5'
