@@ -1,4 +1,4 @@
-# carlos' dotfiles
+# Flydivernys dotfiles happily forked from [carlos' dotfiles](https://github.com/caarlos0/dotfiles)
 
 [![Build Status][tb]][tp]
 [![Powered by Antibody][ab]][ap]
@@ -10,8 +10,8 @@
 
 [ap]: https://github.com/getantibody/antibody
 [ab]: https://img.shields.io/badge/powered%20by-antibody-blue.svg?style=flat-square
-[tb]: https://img.shields.io/travis/caarlos0/dotfiles/master.svg?style=flat-square
-[tp]: https://travis-ci.org/caarlos0/dotfiles
+[tb]: https://img.shields.io/travis/flydiverny/dotfiles/master.svg?style=flat-square
+[tp]: https://travis-ci.org/flydiverny/dotfiles
 [scrn]: /docs/screenshot.png
 
 ## Installation
@@ -31,7 +31,7 @@ First, make sure you have all those things installed:
 Then, run these steps:
 
 ```console
-$ git clone https://github.com/caarlos0/dotfiles.git ~/.dotfiles
+$ git clone https://github.com/flydiverny/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
 $ ./script/bootstrap
 $ zsh # or just close and open your terminal again.
