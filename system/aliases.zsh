@@ -57,3 +57,12 @@ alias hist="fh"
 
 alias psg='ps -Af | grep'
 alias ping='ping -c 5'
+
+# privileged access
+if [ $UID -ne 0 ]; then
+	alias scat='sudo cat'
+    alias svim='sudo vim'
+    alias snano='sudo nano'
+    alias root='sudo su'
+    alias reboot='sudo reboot'
+fi
