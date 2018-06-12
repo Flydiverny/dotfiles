@@ -13,7 +13,7 @@
   "files.autoSave": "onFocusChange",
   "extensions.autoUpdate": true,
   "editor.cursorStyle": "line",
-  "editor.cursorBlinking": "solid",
+  "editor.cursorBlinking": "smooth",
   "window.title": "${activeEditorMedium}${separator}${rootName}",
   "files.trimTrailingWhitespace": true,
   "editor.minimap.enabled": true,
