@@ -48,7 +48,6 @@ ms-vsliveshare.vsliveshare
 msjsdiag.debugger-for-chrome
 pflannery.vscode-versionlens
 robertohuertasm.vscode-icons
-shannonliang.js-intellisense
 smelukov.vscode-csstree
 sourcegraph.javascript-typescript
 technosophos.vscode-helm
