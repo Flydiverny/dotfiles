@@ -52,4 +52,4 @@ _gitaddfun() {
 	git add $*
 }
 
-alias ga="noglob _gitaddfun && gs"
+alias ga="noglob _gitaddfun"
