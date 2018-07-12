@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 REMOTE_URL=$(git remote get-url origin)
 REST=${REMOTE_URL##git@github.com:}
 REPO=${REST%%.git}
