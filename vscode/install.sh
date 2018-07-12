@@ -20,7 +20,6 @@ KnisterPeter.vscode-github
 PeterJausovec.vscode-docker
 WallabyJs.quokka-vscode
 Zignd.html-css-class-completion
-chong.vscode-typescript-react-redux-snippets
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 cmstead.jsrefactor
@@ -49,7 +48,6 @@ msjsdiag.debugger-for-chrome
 pflannery.vscode-versionlens
 robertohuertasm.vscode-icons
 smelukov.vscode-csstree
-sourcegraph.javascript-typescript
 technosophos.vscode-helm
 timonwong.shellcheck
 wayou.vscode-todo-highlight
