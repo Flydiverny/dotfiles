@@ -26,5 +26,375 @@
       "function clog(condition, ...params) { if (condition) { console.log(...params); } return params[params.length - 1]; }"
     ],
     "description": "conditional log"
-  }
+  },
+  "React: import empty": {
+	  "prefix": "_i",
+	  "body": "import ${1} from '${2}';",
+	  "description": "React: import empty"
+	},
+	"React: import empty named": {
+	  "prefix": "_in",
+	  "body": "import { ${1} } from '${2}';",
+	  "description": "React: import empty named"
+	},
+	"React: import": {
+	  "prefix": "_ir",
+	  "body": "import React from 'react';",
+	  "description": "React: import"
+	},
+	"React: import with Component": {
+	  "prefix": "_irc",
+	  "body": "import React, { Component } from 'react';",
+	  "description": "React: import with Component"
+	},
+	"React: import with PureComponent": {
+	  "prefix": "_irpc",
+	  "body": "import React, { PureComponent } from 'react';",
+	  "description": "React: import with PureComponent"
+	},
+	"React: import with PropTypes": {
+	  "prefix": "_irp",
+	  "body": "import React from 'react';\nimport PropTypes from 'prop-types';",
+	  "description": "React: import with PropTypes"
+	},
+	"React: import with Component and PropTypes": {
+	  "prefix": "_ircp",
+	  "body": "import React, { Component } from 'react';\nimport PropTypes from 'prop-types';",
+	  "description": "React: import with Component and PropTypes"
+	},
+	"React: import react-dom()": {
+	  "prefix": "_ird",
+	  "body": "import ReactDOM from 'react-dom';",
+	  "description": "React: import react-dom()"
+	},
+	"React: export empty()": {
+	  "prefix": "_ex",
+	  "body": "export ${1};",
+	  "description": "React: export empty()"
+	},
+	"React: export default empty()": {
+	  "prefix": "_exd",
+	  "body": "export default ${1};",
+	  "description": "React: export default empty()"
+	},
+	"React: componentDidMount() { ... }": {
+	  "prefix": "_cdm",
+	  "body": "componentDidMount() {\n\t${1}\n}${2}",
+	  "description": "React: componentDidMount() { ... }"
+	},
+	"React: componentWillMount() { ... }": {
+	  "prefix": "_cwm",
+	  "body": "componentWillMount() {\n\t${1}\n}${2}",
+	  "description": "React: componentWillMount() { ... }"
+	},
+	"React: componentWillReceiveProps(np) { ... }": {
+	  "prefix": "_cwr",
+	  "body": "componentWillReceiveProps(nextProps) {\n\t${1}\n}${2}",
+	  "description": "React: componentWillReceiveProps(np) { ... }"
+	},
+	"React: shouldComponentUpdate(np, ns) { ... }": {
+	  "prefix": "_scu",
+	  "body": "shouldComponentUpdate(nextProps, nextState) {\n\t${1}\n}${2}",
+	  "description": "React: shouldComponentUpdate(np, ns) { ... }"
+	},
+	"React: componentWillUpdate(np, ns) { ... }": {
+	  "prefix": "_cwup",
+	  "body": "componentWillUpdate(nextProps, nextState) {\n\t${1}\n}${2}",
+	  "description": "React: componentWillUpdate(np, ns) { ... }"
+	},
+	"React: componentDidUpdate(pp, ps) { ... }": {
+	  "prefix": "_cdup",
+	  "body": "componentDidUpdate(prevProps, prevState) {\n\t${1}\n}${2}",
+	  "description": "React: componentDidUpdate(pp, ps) { ... }"
+	},
+	"React: componentWillUnmount() { ... }": {
+	  "prefix": "_cwun",
+	  "body": "componentWillUnmount() {\n\t${1}\n}${2}",
+	  "description": "React: componentWillUnmount() { ... }"
+	},
+	"React: componentDidCatch(error, info) { ... }": {
+	  "prefix": "_cdc",
+	  "body": "componentDidCatch(error, info) {\n\t${1}\n}${2}",
+	  "description": "React: componentDidCatch(error, info) { ... }"
+	},
+	"React: cx({ ... })": {
+	  "prefix": "_cx",
+	  "body": "cx({\n\t$1: $2\n});",
+	  "description": "React: cx({ ... })"
+	},
+	"React: forceUpdate(...)": {
+	  "prefix": "_fup",
+	  "body": "forceUpdate(${1:callback});",
+	  "description": "React: forceUpdate(...)"
+	},
+	"React: Class.contextTypes = { ... }": {
+	  "prefix": "_cct",
+	  "body": "${1}.contextTypes = {\n\t${2}: PropTypes.${3:string}\n};",
+	  "description": "React: Class.contextTypes = { ... }"
+	},
+	"React: Class.propTypes = { ... }": {
+	  "prefix": "_cpt",
+	  "body": "${1}.propTypes = {\n\t${2}: PropTypes.${3:string}\n};",
+	  "description": "React: Class.propTypes = { ... }"
+	},
+	"React: Class.defaultProps = { ... }": {
+	  "prefix": "_cdp",
+	  "body": "${1}.defaultProps = {\n\t${2}: ${3}\n};",
+	  "description": "React: Class.defaultProps = { ... }"
+	},
+	"React: static contextTypes = { ... }": {
+	  "prefix": "_scct",
+	  "body": "static contextTypes = {\n\t${1}: PropTypes.${2:string}\n}",
+	  "description": "React: static contextTypes = { ... }"
+	},
+	"React: static propTypes = { ... }": {
+	  "prefix": "_scpt",
+	  "body": "static propTypes = {\n\t${1}: PropTypes.${2:string}\n}",
+	  "description": "React: static propTypes = { ... }"
+	},
+	"React: static defaultProps = { ... }": {
+	  "prefix": "_scdp",
+	  "body": "static defaultProps = {\n\t${1}: ${2}\n}",
+	  "description": "React: static defaultProps = { ... }"
+	},
+	"React: class skeleton": {
+	  "prefix": "_cer",
+	  "body": "import React, { Component } from 'react';\n\nclass ${1} extends Component {\n\n\trender() {\n\t\treturn (\n\t\t\t${2:<div></div>}\n\t\t);\n\t}\n\n}\n\nexport default ${1};",
+	  "description": "React: class skeleton"
+	},
+	"React: pure class skeleton": {
+	  "prefix": "_cepr",
+	  "body": "import React, { PureComponent } from 'react';\n\nclass ${1} extends PureComponent {\n\n\trender() {\n\t\treturn (\n\t\t\t${2:<div></div>}\n\t\t);\n\t}\n\n}\n\nexport default ${1};",
+	  "description": "React: pure class skeleton"
+	},
+	"React: Stateless Component": {
+	  "prefix": "_rsc",
+	  "body": "import React from 'react';\n\nconst ${1} = ({${2}}) => (\n\t<div>${4}</div>\n);\n\nexport default ${1};",
+	  "description": "React: Stateless Component"
+	},
+	"React: Stateless Component PropTypes": {
+	  "prefix": "_rscp",
+	  "body": "import React from 'react';\nimport PropTypes from 'prop-types';\n\nconst ${1} = ({${2}}) => (\n\t<div>${4}</div>\n);\n\n${1}.propTypes = {\n\t${2}: PropTypes.${3}\n};\n\nexport default ${1};",
+	  "description": "React: Stateless Component PropTypes"
+	},
+	"React: Stateless Component Return": {
+	  "prefix": "_rscr",
+	  "body": "import React from 'react';\nimport PropTypes from 'prop-types';\n\nconst ${1} = ({${2}}) => {\n\treturn (\n\t\t<div>${4}</div>\n\t);\n}\n\n${1}.propTypes = {\n\t${2}: PropTypes.${3}\n};\n\nexport default ${1};",
+	  "description": "React: Stateless Component Return"
+	},
+	"React: Stateless Component Click": {
+	  "prefix": "_rscc",
+	  "body": "import React from 'react';\nimport PropTypes from 'prop-types';\n\nconst ${1} = ({${2}}) => {\n\tconst handleClick = () => {};\n\treturn (\n\t\t<div onClick={handleClick}>${4}</div>\n\t);\n}\n\n${1}.propTypes = {\n\t${2}: PropTypes.${3}\n};\n\nexport default ${1};",
+	  "description": "React: Stateless Component Click"
+	},
+	"React: Stateless Function": {
+	  "prefix": "_rsf",
+	  "body": "const ${1} = ({${2}}) => (\n\t<div>{${2}}</div>\n);",
+	  "description": "React: Stateless Function"
+	},
+	"React: Component displayName": {
+	  "prefix": "_cdn",
+	  "body": "${1}.displayName = '${1}';",
+	  "description": "React: Component displayName"
+	},
+	"React: render() { return ... }": {
+	  "prefix": "_ren",
+	  "body": "render() {\n\treturn (\n\t\t${1:<div></div>}\n\t);\n}",
+	  "description": "React: render() { return ... }"
+	},
+	"React: setState({ ... })": {
+	  "prefix": "_sst",
+	  "body": "this.setState({\n\t${1}: ${2}\n});",
+	  "description": "React: setState({ ... })"
+	},
+	"React: this.props.": {
+	  "prefix": "_props",
+	  "body": "this.props.${1}",
+	  "description": "React: this.props."
+	},
+	"React: destruct this.props.": {
+	  "prefix": "_dprops",
+	  "body": "const { ${1} } = this.props;",
+	  "description": "React: destruct this.props."
+	},
+	"React: this.state.": {
+	  "prefix": "_state",
+	  "body": "this.state.${1}",
+	  "description": "React: this.state."
+	},
+	"React: destruct this.state.": {
+	  "prefix": "_dstate",
+	  "body": "const { ${1} } = this.state;",
+	  "description": "React: destruct this.state."
+	},
+	"React: destruct object.": {
+	  "prefix": "_dobj",
+	  "body": "const { ${1} } = ${2};",
+	  "description": "React: destruct object."
+	},
+	"React: render(component, container, [callback])": {
+	  "prefix": "_rrc",
+	  "body": "React.render(${1:<$2 />}, ${3:document.body}${4:, ${5:callback}});",
+	  "description": "React: render(component, container, [callback])"
+	},
+	"React: Fragment": {
+	  "prefix": "_frag",
+	  "body": "<React.Fragment>\n\t$1\n</React.Fragment>",
+	  "description": "React: Fragment"
+	},
+	"React: constructor(props)": {
+	  "prefix": "_cns",
+	  "body": "constructor(props) {\n\tsuper(props);\n\t${1:this.state = ${2};}\n}",
+	  "description": "React: constructor(props)"
+	},
+	"React: class Foo extends Bar": {
+	  "prefix": "_clss",
+	  "body": "class ${1:Foo} extends ${2:React.Component} {\n\trender() {\n\t\t${3}\n\t}\n}",
+	  "description": "React: class Foo extends Bar"
+	},
+	"React: dangerouslySetInnerHTML": {
+	  "prefix": "_dnghtml",
+	  "body": "dangerouslySetInnerHTML={{__html: ${1}}}",
+	  "description": "React: dangerouslySetInnerHTML"
+	},
+	"React: PropType array": {
+	  "prefix": "_pta",
+	  "body": "PropTypes.array,",
+	  "description": "React: PropType array"
+	},
+	"React: PropType array required": {
+	  "prefix": "_ptar",
+	  "body": "PropTypes.array.isRequired,",
+	  "description": "React: PropType array required"
+	},
+	"React: PropType bool": {
+	  "prefix": "_ptb",
+	  "body": "PropTypes.bool,",
+	  "description": "React: PropType bool"
+	},
+	"React: PropType bool required": {
+	  "prefix": "_ptbr",
+	  "body": "PropTypes.bool.isRequired,",
+	  "description": "React: PropType bool required"
+	},
+	"React: PropType function": {
+	  "prefix": "_ptf",
+	  "body": "PropTypes.func,",
+	  "description": "React: PropType function"
+	},
+	"React: PropType function required": {
+	  "prefix": "_ptfr",
+	  "body": "PropTypes.func.isRequired,",
+	  "description": "React: PropType function required"
+	},
+	"React: PropType number": {
+	  "prefix": "_ptn",
+	  "body": "PropTypes.number,",
+	  "description": "React: PropType number"
+	},
+	"React: PropType number required": {
+	  "prefix": "_ptnr",
+	  "body": "PropTypes.number.isRequired,",
+	  "description": "React: PropType number required"
+	},
+	"React: PropType object": {
+	  "prefix": "_pto",
+	  "body": "PropTypes.object,",
+	  "description": "React: PropType object"
+	},
+	"React: PropType object required": {
+	  "prefix": "_ptor",
+	  "body": "PropTypes.object.isRequired,",
+	  "description": "React: PropType object required"
+	},
+	"React: PropType string": {
+	  "prefix": "_pts",
+	  "body": "PropTypes.string,",
+	  "description": "React: PropType string"
+	},
+	"React: PropType string required": {
+	  "prefix": "_ptsr",
+	  "body": "PropTypes.string.isRequired,",
+	  "description": "React: PropType string required"
+	},
+	"React: PropType node": {
+	  "prefix": "_ptnd",
+	  "body": "PropTypes.node,",
+	  "description": "React: PropType node"
+	},
+	"React: PropType node required": {
+	  "prefix": "_ptndr",
+	  "body": "PropTypes.node.isRequired,",
+	  "description": "React: PropType node required"
+	},
+	"React: PropType element": {
+	  "prefix": "_ptel",
+	  "body": "PropTypes.element,",
+	  "description": "React: PropType element"
+	},
+	"React: PropType element required": {
+	  "prefix": "_ptelr",
+	  "body": "PropTypes.element.isRequired,",
+	  "description": "React: PropType element required"
+	},
+	"React: PropType instanceOf": {
+	  "prefix": "_pti",
+	  "body": "PropTypes.instanceOf(${1}),",
+	  "description": "React: PropType instanceOf"
+	},
+	"React: PropType instanceOf required": {
+	  "prefix": "_ptir",
+	  "body": "PropTypes.instanceOf(${1}).isRequired,",
+	  "description": "React: PropType instanceOf required"
+	},
+	"React: PropType oneOf": {
+	  "prefix": "_pte",
+	  "body": "PropTypes.oneOf([${1}]),",
+	  "description": "React: PropType oneOf"
+	},
+	"React: PropType oneOf required": {
+	  "prefix": "_pter",
+	  "body": "PropTypes.oneOf([${1}]).isRequired,",
+	  "description": "React: PropType oneOf required"
+	},
+	"React: PropType oneOfType": {
+	  "prefix": "_ptet",
+	  "body": "PropTypes.oneOfType([${1}]),",
+	  "description": "React: PropType oneOfType"
+	},
+	"React: PropType oneOfType required": {
+	  "prefix": "_ptetr",
+	  "body": "PropTypes.oneOfType([${1}]).isRequired,",
+	  "description": "React: PropType oneOfType required"
+	},
+	"React: PropType arrayOf": {
+	  "prefix": "_ptao",
+	  "body": "PropTypes.arrayOf(${1}),",
+	  "description": "React: PropType arrayOf"
+	},
+	"React: PropType arrayOf required": {
+	  "prefix": "_ptaor",
+	  "body": "PropTypes.arrayOf(${1}).isRequired,",
+	  "description": "React: PropType arrayOf required"
+	},
+	"React: PropType objectOf": {
+	  "prefix": "_ptoo",
+	  "body": "PropTypes.objectOf(${1}),",
+	  "description": "React: PropType objectOf"
+	},
+	"React: PropType objectOf required": {
+	  "prefix": "_ptoor",
+	  "body": "PropTypes.objectOf(${1}).isRequired,",
+	  "description": "React: PropType objectOf required"
+	},
+	"React: PropType shape": {
+	  "prefix": "_ptsh",
+	  "body": "PropTypes.shape({${1}}),",
+	  "description": "React: PropType shape"
+	},
+	"React: PropType shape required": {
+	  "prefix": "_ptshr",
+	  "body": "PropTypes.shape({${1}}).isRequired,",
+	  "description": "React: PropType shape required"
+	}
 }
