@@ -9,6 +9,7 @@
 	please = push --force-with-lease
 	commend = commit --amend --no-edit
 	lt = log --tags --decorate --simplify-by-decoration --oneline
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d && git remote update origin --prune"
 [color]
 	diff = auto
 	status = auto
