@@ -28,6 +28,7 @@
     "**/bower_components": true,
     "/vendor": true
   },
+  "shellformat.flag": "-i 2 -ci",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.fontAliasing": "antialiased",
   "editor.fontWeight": "300",
