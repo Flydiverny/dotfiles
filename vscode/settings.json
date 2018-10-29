@@ -1,18 +1,14 @@
 {
   "breadcrumbs.enabled": true,
   "editor.fontSize": 15,
-  "editor.rulers": [
-    80,
-    120
-  ],
-  "editor.formatOnSave": true,
+  "editor.rulers": [80, 120],
+  "editor.formatOnSave": false,
   "editor.tabSize": 4,
   "editor.trimAutoWhitespace": true,
   "editor.tabCompletion": true,
   "explorer.openEditors.visible": 5,
   "window.restoreWindows": "none",
   "terminal.external.osxExec": "iTerm.app",
-  "files.autoSave": "onFocusChange",
   "extensions.autoUpdate": true,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "smooth",
@@ -38,9 +34,21 @@
   "search.smartCase": true,
   "editor.fontFamily": "FuraCode Nerd Font, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "gitlens.historyExplorer.enabled": true,
+  "gitlens.historyExplorer.enabled": false,
   "workbench.iconTheme": "vscode-icons",
   "gitlens.advanced.messages": {
     "suppressShowKeyBindingsNotice": true
-  }
+  },
+  "todo-tree.defaultHighlight": {
+    "foreground": "green",
+    "type": "none"
+  },
+  "todo-tree.customHighlight": {
+    "TODO": {},
+    "FIXME": {}
+  },
+
+  "workbench.editor.enablePreview": false,
+  "files.autoSave": "onFocusChange",
+  "search.location": "sidebar"
 }
