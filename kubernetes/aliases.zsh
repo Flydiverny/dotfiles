@@ -16,5 +16,6 @@ alias klbaddr="kubectl get svc -ojsonpath='{.status.loadBalancer.ingress[0].host
 
 alias kdebug='kubectl run -i -t debug --rm --image=caarlos0/debug --restart=Never'
 alias knrunning='kubectl get pods --field-selector=status.phase!=Running'
-alias kfails='kubectl get po -owide --all-namespaces | grep "0/" | tee /dev/tty | wc -l'
-alias kimg="kubectl get deployment --output=jsonpath='{.spec.template.spec.containers[*].image}'"
+# alias kfails='kubectl get po -owide --all-namespaces | grep "0/" | tee /dev/tty | wc -l'
+alias kfails='kubectl get po -owide --all-namespaces --field-selector=status.phase=Failed | tee /dev/tty | wc -l'
+alias kimg="kubectl get deployment -ojsonpath='{...image}' | tr '[[:space:]]' '\n' | sed -e s@(.*[^/])/@@g | tr ':' ' ' | column -t"
