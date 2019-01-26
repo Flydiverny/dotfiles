@@ -1,0 +1,6 @@
+#!/bin/sh
+# shellcheck disable=SC2164
+if ! workspace=$(fd -t f -d 2 .code-workspace ~/Code | sed "s@$PROJECTS/@@" | sed 's@\.code-workspace@@' | fzf -d 10); then
+  return $?
+fi
+e "$PROJECTS/$workspace.code-workspace"
