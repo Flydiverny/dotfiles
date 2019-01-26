@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ -f "/etc/arch-release" ]; then
     # pacman/yaourt aliases
     #alias pacman='PACMAN=/usr/bin/pacman; [ -f /usr/bin/pacman-color ] && PACMAN=/usr/bin/pacman-color; $PACMAN $@'
