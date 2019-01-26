@@ -4,9 +4,9 @@ if command -v hub >/dev/null 2>&1; then
 fi
 
 _gdnfzf() {
-	file=$(
-		git diff --name-only $* | fzf -d 10
-	) || return
+	if ! file=$(git diff --name-only $* | fzf -d 10); then
+		return $?
+	fi
 	rootDir=$(git rev-parse --show-toplevel)
 	echo "$rootDir/$file"
 }
