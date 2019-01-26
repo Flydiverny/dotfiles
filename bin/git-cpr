@@ -1,18 +1,11 @@
 #!/bin/bash
 # modification of https://github.com/tj/git-extras/blob/master/bin/git-pull-request
-
-#
-# Echo <msg> and exit
-#
+title=$1
 
 abort() {
 	echo >&2 "$@"
 	exit 1
 }
-
-#
-# Produce json with <title>, <body>, <head> and <base>
-#
 
 json() {
 	local title="${1//\"/\\\"}"
@@ -30,12 +23,10 @@ EOF
 }
 
 # branch
-
-branch=${1-$(git symbolic-ref HEAD | sed 's/refs\/heads\///')}
+branch=${2-$(git symbolic-ref HEAD | sed 's/refs\/heads\///')}
 remote="origin"
 
 # make sure it's pushed
-
 git push "$remote" "$branch" || abort "failed to push $branch"
 
 remote_url=$(git config remote."$remote".url)
@@ -46,16 +37,9 @@ else
 fi
 project=${project%.git}
 
-# prompt
-
-echo
 echo "  create pull-request for $project '$branch'"
-echo
-printf "  title: " && read -r title
-echo
 
 # create pull request
-
 base="master"
 body=$(json "$title" "$body" "$branch" "$base")
 
