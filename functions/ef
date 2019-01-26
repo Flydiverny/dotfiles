@@ -1,3 +1,6 @@
 #!/bin/sh
 # shellcheck disable=SC2164
-e "$PROJECTS/$(_projectfzf)"
+if ! project=$(_projectfzf); then
+  return $?
+fi
+e "$PROJECTS/$project"
