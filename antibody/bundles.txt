@@ -1,8 +1,6 @@
 # this block is in alphabetic order
 caarlos0/ports kind:path
-caarlos0/zsh-open-pr kind:path
 mafredri/zsh-async
-#rupa/z
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 
