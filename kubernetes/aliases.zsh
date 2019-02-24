@@ -10,8 +10,9 @@ alias kx='kubectx'
 alias kn='kubens'
 
 alias k='kubectl'
+alias kg='kubectl get'
 alias sk='kubectl -n kube-system'
-alias ke='EDITOR=vim kubectl edit'
+alias ke='EDITOR=nano kubectl edit'
 alias klbaddr="kubectl get svc -ojsonpath='{.status.loadBalancer.ingress[0].hostname}'"
 
 alias kdebug='kubectl run -i -t debug --rm --image=caarlos0/debug --restart=Never'
