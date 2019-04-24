@@ -1,2 +1,2 @@
 #!/bin/sh
-fd -t d -t l -d 2 . ~/Code | sed "s@$PROJECTS/@@" | fzf -d 10
+fd -t d -t l -d 2 . $PROJECTS | sed "s@$PROJECTS/@@" | fzf -d 10
