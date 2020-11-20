@@ -9,7 +9,15 @@
 	please = push --force-with-lease
 	commend = commit --amend --no-edit
 	lt = log --tags --decorate --simplify-by-decoration --oneline
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d && git remote update origin --prune"
+	dm = !"git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d && git remote update origin --prune"
+	diff-image = "!f() { GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = !"git lg1"
+	tree = "forest --pretty=format:\"%C(red)%h %C(magenta)(%ar) %C(blue)%an %C(reset)%s\" --style=15 --reverse"
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	alias = config --get-regexp ^alias\\.
 [color]
 	diff = auto
 	status = auto
@@ -17,7 +25,9 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
-	editor = vim
+	editor = nano
+#	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	compression = -1
 	autocrlf = input
 	whitespace = trailing-space,space-before-tab
@@ -47,3 +57,17 @@
 	template = ~/.dotfiles/git/template.txt
 [log]
 	showSignature = false
+[includeIf "gitdir/i:~/Code/private/"]
+ 	path = ~/.gitconfig-private
+[includeIf "gitdir/i:~/Code/github/"]
+ 	path = ~/.gitconfig-private
+[includeIf "gitdir/i:~/Code/Go/"]
+ 	path = ~/.gitconfig-private
+[includeIf "gitdir/i:~/Code/jayway/"]
+ 	path = ~/.gitconfig-work
+[includeIf "gitdir/i:~/Code/gleerups/"]
+ 	path = ~/.gitconfig-work
+[includeIf "gitdir/i:~/Code/tf/"]
+ 	path = ~/.gitconfig-work
+[includeIf "gitdir/i:~/Code/igift/"]
+ 	path = ~/.gitconfig-ingka
