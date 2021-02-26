@@ -76,3 +76,5 @@ abbr -a stash 'git stash'
 abbr -a master 'git switch (git main-branch)'
 
 abbr -a gsm 'git stash; and git checkout master'
+
+abbr -a gpu 'git push -u origin HEAD'
