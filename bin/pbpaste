@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+# the pbpaste script
+if grep -q microsoft /proc/version
+	powershell.exe -command 'Get-Clipboard' | tr -d '\r' | head -n -1
+else
+	echo "Fix script to use native pbpaste"
+end
