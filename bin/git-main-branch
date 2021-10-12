@@ -1,6 +1,7 @@
 #!/usr/bin/env fish
-if test -f .git/refs/remotes/origin/main
-	echo main
+set toplevel (git rev-parse --show-toplevel)
+and if test -f $toplevel/.git/refs/remotes/origin/main
+    echo main
 else
-	echo master
+    echo master
 end

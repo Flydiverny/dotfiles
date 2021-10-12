@@ -4,7 +4,7 @@ function gaf -d "Stage selected file"
             begin
                 set saved_pwd $PWD
                 and cdr
-                and set file (git diff --name-only * | fzf -d 10)
+                and set file (begin; git ls-files -o --exclude-standard; git diff --name-only; end | fzf -d 10)
                 and git add $file
                 and git status -sb
                 and builtin cd $saved_pwd
