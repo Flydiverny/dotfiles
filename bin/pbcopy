@@ -4,5 +4,5 @@ if grep -q microsoft /proc/version
     tee <&0 | clip.exe
     exit 0
 else
-    echo "Fix script to use native pbcopy"
+    xclip -selection clipboard
 end
