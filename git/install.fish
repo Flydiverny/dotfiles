@@ -79,3 +79,5 @@ abbr -a main 'git switch (git main-branch)'
 abbr -a gsm 'git stash; and git checkout master'
 
 abbr -a gpu 'git push -u origin HEAD'
+
+abbr -a gsu 'git submodule update --init --recursive'
