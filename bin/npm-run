@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+set -euo pipefail
+RUNNER=${YARN_RUN_RUNNER:='npm'}
+args=${*:-""}
+
+if [[ -n "$args" ]]; then
+  # shellcheck disable=SC2086
+  $RUNNER run $args
+  exit $?
+fi
+
+if ! command -v fzf >/dev/null 2>&1; then
+  echo "fzf not found"
+  exit 1
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "jq not found"
+  exit 1
+fi
+
+if [ ! -f package.json ]; then
+  echo "No package.json found"
+  exit 1
+fi
+
+commands=$(jq -r ".scripts | keys[]" <package.json)
+
+# Only do workspaces for yarn
+if [ "$RUNNER" == "yarn" ]; then
+  if workspaces=$(jq -r '.workspaces.packages[]' <package.json 2>/dev/null); then
+    for ws in $workspaces; do
+      [[ ! -f "$ws/package.json" ]] && continue
+      if ! scripts=$(jq -r ".scripts | keys[] | \"$ws \(.)\"" <"$ws/package.json" 2>/dev/null); then
+        continue
+      fi
+      commands+=$(echo -e "\n$scripts")
+    done
+  fi
+fi
+
+# shellcheck disable=SC2016
+previewScript='
+set target (string split " " {})
+set ws $target[1]
+set script $target[2]
+if test -z "$script"
+	set script $ws
+	set ws "."
+	set cwd ""
+else
+	set cwd " --cwd $ws"
+end;
+set reset (tput sgr0);
+set bold (tput bold);
+set yellow (tput setaf 3);
+set command (jq -r ".scripts[\"$script\"]" <"$ws/package.json");
+echo -e {$yellow}{$bold}yarn{$cwd} run $script\n{$reset}# $command
+'
+
+# preview should show correct runner
+previewScript=${previewScript/yarn/$RUNNER}
+
+if ! command=$(echo "$commands" | fzf --preview-window down:2 --preview "$previewScript"); then
+  # user aborted, we exit
+  exit $?
+fi
+
+# shellcheck disable=SC2116,SC2046
+set -- $(echo "$command")
+ws=$1
+script=${2:-''}
+cwd=""
+
+[[ -z "$script" ]] && script=$ws || cwd=" --cwd $ws"
+
+echo "${RUNNER}${cwd} run $script"
+# shellcheck disable=SC2086
+$RUNNER ${cwd} run "$script"
