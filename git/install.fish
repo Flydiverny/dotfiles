@@ -75,6 +75,8 @@ abbr -a gnb 'git switch -c'
 abbr -a stash 'git stash'
 abbr -a master 'git switch (git main-branch)'
 abbr -a main 'git switch (git main-branch)'
+abbr -a rebase 'git rebase -i origin/(git main-branch)'
+
 
 abbr -a gsm 'git stash; and git checkout master'
 
