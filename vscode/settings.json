@@ -8,19 +8,18 @@
 	"editor.tabSize": 4,
 	"editor.trimAutoWhitespace": true,
 	"editor.tabCompletion": "on",
-	"explorer.openEditors.visible": 0,
 	"window.restoreWindows": "none",
 	"terminal.external.osxExec": "iTerm.app",
 	"terminal.integrated.fontSize": 14,
-	"files.autoSave": "onFocusChange",
+	"files.autoSave": "off",
 	"extensions.autoUpdate": true,
 	"editor.cursorBlinking": "phase",
-	"window.title": "${activeEditorMedium}${separator}${rootName}",
+	// "window.title": "${activeEditorMedium}${separator}${rootName}",
+	"window.title": "${rootName}${separator}${activeEditorShort}",
 	"files.trimTrailingWhitespace": true,
 	"editor.minimap.enabled": false,
 	"editor.renderWhitespace": "boundary",
 	"workbench.colorTheme": "Nord",
-	"window.zoomLevel": 0,
 	"extensions.ignoreRecommendations": false,
 	"go.coverageDecorator": {
 		"type": "gutter"
@@ -83,5 +82,68 @@
 	"workbench.preferredDarkColorTheme": "Nord",
 	"editor.formatOnSave": true,
 	"files.insertFinalNewline": true,
-	"editor.formatOnSaveMode": "modifications"
+	"editor.formatOnSaveMode": "modifications",
+	"yaml.customTags": [
+		"!And",
+		"!And sequence",
+		"!If",
+		"!If sequence",
+		"!Not",
+		"!Not sequence",
+		"!Equals",
+		"!Equals sequence",
+		"!Or",
+		"!Or sequence",
+		"!FindInMap",
+		"!FindInMap sequence",
+		"!Base64",
+		"!Join",
+		"!Join sequence",
+		"!Cidr",
+		"!Ref",
+		"!Sub",
+		"!Sub sequence",
+		"!GetAtt",
+		"!GetAZs",
+		"!ImportValue",
+		"!ImportValue sequence",
+		"!Select",
+		"!Select sequence",
+		"!Split",
+		"!Split sequence"
+	],
+
+	"json.schemas": [],
+	"editor.inlineSuggest.enabled": true,
+	"[typescript]": {
+
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"yaml.schemas": {},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"window.menuBarVisibility": "toggle",
+	"cSpell.userWords": [
+		"doktor"
+	],
+	"github.copilot.enable": {
+		"*": false,
+		"yaml": false,
+		"plaintext": false,
+		"markdown": false
+	},
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
