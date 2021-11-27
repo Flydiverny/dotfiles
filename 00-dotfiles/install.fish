@@ -42,5 +42,3 @@ end
 if test -f ~/.localrc.fish
 	ln -sf ~/.localrc.fish ~/.config/fish/conf.d/localrc.fish
 end
-
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
