@@ -14,11 +14,13 @@ end
 mkdir -p $vscode_home
 	and ln -sf "$DOTFILES/vscode/settings.json" "$vscode_home/User/settings.json"
 	and ln -sf "$DOTFILES/vscode/keybindings.json" "$vscode_home/User/keybindings.json"
-	and ln -sf "$DOTFILES/vscode/snippets" "$vscode_home/User/"
+# and ln -sf "$DOTFILES/vscode/snippets" "$vscode_home/User/"
+
 	and echo "vscode: linked config files"
 
-cat $DOTFILES/vscode/extensions.txt | while read module
-	code --install-extension "$module"
-		and echo "vscode: $module"
-		or echo "vscode: failed to install $module"
-end
+# cat $DOTFILES/vscode/extensions.txt | while read module
+# 	code --install-extension "$module"
+# 		and echo "vscode: $module"
+# 		or echo "vscode: failed to install $module"
+# end
+
