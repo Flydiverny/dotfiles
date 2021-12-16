@@ -85,3 +85,5 @@ function npm-run -d npm-run
     # commandline -f repaint
     commandline -f execute
 end
+
+complete --command npm-run --w 'npm run'
