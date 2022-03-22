@@ -4,7 +4,7 @@ function gdf -d "Diff selected file"
             begin
                 set saved_pwd $PWD
                 and cdr
-                and set file (git diff --name-only | fzf -d 10)
+                and set file (git diff --name-only | fzf --prompt 'git diff ' --preview 'git diff --color {}')
                 and git diff $file
                 and builtin cd $saved_pwd
             end; or begin

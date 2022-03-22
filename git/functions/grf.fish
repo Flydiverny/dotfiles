@@ -4,7 +4,7 @@ function grf -d "Unstage selected file"
             begin
                 set saved_pwd $PWD
                 and cdr
-                and set file (git diff --cached --name-only | fzf -d 10)
+                and set file (git diff --cached --name-only | fzf --prompt 'git restore --staged ')
                 and git restore --staged $file
                 and git status -sb
                 and builtin cd $saved_pwd

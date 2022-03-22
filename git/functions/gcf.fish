@@ -4,7 +4,7 @@ function gcf -d "Remove local changes from selected file"
             begin
                 set saved_pwd $PWD
                 and cdr
-                and set file (git diff --name-only | fzf -d 10)
+                and set file (git diff --name-only | fzf --prompt 'git restore ' -d 10 )
                 and git restore $file
                 and git status -sb
                 and builtin cd $saved_pwd
