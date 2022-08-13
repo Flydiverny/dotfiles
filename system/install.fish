@@ -20,6 +20,10 @@ if command -qs fdfind
 	ln -sf (which fdfind) ~/.bin/fd
 end
 
+# if command -qs fd
+# 	abbr -a find 'fd'
+# end
+
 if command -qs batcat
 	ln -sf (which batcat) ~/.bin/bat
 end
@@ -39,3 +43,7 @@ end
 if command -qs rg
 	abbr -a grep 'rg'
 end
+
+# if command -qs dog
+# 	abbr -a dig 'dog'
+# end
