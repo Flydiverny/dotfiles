@@ -1,2 +1,23 @@
 builds:
 - skip: true
+changelog:
+  sort: asc
+  use: github
+  groups:
+    - title: 'editor'
+      regexp: "^.*\\(nvim\\):+.*$"
+      order: 200
+    - title: 'tmux'
+      regexp: "^.*\\(tmux\\):+.*$"
+      order: 250
+    - title: 'system'
+      regexp: "^.*\\((system|fish|fzf|macos|ssh)\\):+.*$"
+      order: 100
+    - title: 'git'
+      regexp: "^.*\\((git|gh)\\):+.*$"
+      order: 300
+    - title: 'terminals'
+      regexp: "^.*\\((kitty|wezterm|alacritty)\\):+.*$"
+      order: 400
+    - title: Other work
+      order: 999
