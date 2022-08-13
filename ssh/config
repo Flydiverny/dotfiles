@@ -1,6 +1,1 @@
-Host *
-  ServerAliveInterval 60
-  StrictHostKeyChecking no
-#  UseKeychain no
-
-Include ~/.ssh/config.local
+Include ~/.ssh/config.dotfiles

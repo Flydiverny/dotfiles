@@ -44,7 +44,7 @@ function setup_gitconfig
 		git config --global user.name $user_name
 			and git config --global user.email $user_email
 			or abort 'failed to setup git user name and email'
-	else if test '$managed' = "true"
+	else if test "$managed" != "true"
 		# if user.email exists, let's check for dotfiles.managed config. If it is
 		# not true, we'll backup the gitconfig file and set previous user.email and
 		# user.name in the new one
@@ -92,14 +92,18 @@ function install_dotfiles
 			or abort 'failed to link config file'
 	end
 
-	link_file $DOTFILES_ROOT/fisher/plugins $__fish_config_dir/fish_plugins backup
+	link_file $DOTFILES_ROOT/fish/plugins $__fish_config_dir/fish_plugins backup
 		or abort plugins
-	link_file $DOTFILES_ROOT/bat/config $HOME/.config/bat/config backup
+	link_file $DOTFILES_ROOT/fish/nord.theme $__fish_config_dir/themes/nord.theme backup
+		or abort nord.theme
+	link_file $DOTFILES_ROOT/system/bat.config $HOME/.config/bat/config backup
 		or abort bat
-	link_file $DOTFILES_ROOT/htop/htoprc $HOME/.config/htop/htoprc backup
-		or abort htoprc
-	link_file $DOTFILES_ROOT/ssh/config $HOME/.ssh/config local
-		or abort ssh
+	link_file $DOTFILES_ROOT/ssh/config.dotfiles $HOME/.ssh/config.dotfiles backup
+		or abort ssh-config
+	link_file $DOTFILES_ROOT/ssh/rc $HOME/.ssh/rc backup
+		or abort ssh-rc
+	link_file $DOTFILES_ROOT/yamllint/config $HOME/.config/yamllint/config backup
+		or abort yamllint
 end
 
 curl -sL git.io/fisher | source && fisher install jorgebucaran/fisher
@@ -118,7 +122,11 @@ fisher update
 	and success 'plugins'
 	or abort 'plugins'
 
-mkdir -p ~/.config/fish/completions/
+yes | fish_config theme save Nord
+	and success 'colorscheme'
+	or abort 'colorscheme'
+
+mkdir -p $__fish_config_dir/completions/
 	and success 'completions'
 	or abort 'completions'
 

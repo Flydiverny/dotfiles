@@ -1,33 +1,14 @@
 <p align="center">
   <img alt="header image" src="https://raw.githubusercontent.com/caarlos0/dotfiles.fish/master/docs/header.svg" height="350" />
   <h2 align="center">carlos' dotfiles</h2>
-  <p align="center">Config files for Fish, Java, Ruby, Go, Editors, Terminals and more.</p>
+  <p align="center">Config files for Fish, Go, Editors, Terminals and more.</p>
 </p>
 
 ---
 
-Forked from my [ZSH dotfiles](https://github.com/caarlos0/dotfiles), those are
+Forked from my [ZSH dotfiles](https://github.com/caarlos0/dotfiles), these are
 my Fish Shell config files, together with editor, macOS configs and other
 goodies.
-
-The main reasons for the fork are:
-
-- a lot of things I have out of the box on Fish needed plugins on zsh
-- Fish autocompletion is awesome
-- Fish syntax is easier to use
-- Fish is more modern.
-
-This is an attempt to make the same things I had on my ZSH dotfiles on Fish.
-For the user, it should look pretty much the same, although under the hood
-there are a lot of changes.
-
-Config files are still topical, and even though aliases are not a thing on Fish,
-files are named like that still (and hold both functions and abbreviations).
-
-The auto-update feature was removed, as it was hacky on ZSH and I didn't want to
-do it. Instead, now the bootstrap script is better and can be run multiple times
-without any issues, so, to update, `git pull` and run the `bootstrap.fish`
-script.
 
 ## Installation
 
@@ -68,43 +49,41 @@ $ ./script/bootstrap.fish
 Reverting is not totally automated, but it pretty much consists in removing
 the fish config and dotfiles folder, as well as moving back some config files.
 
-**Remove the folders:**
-
 ```console
-$ rm -rf ~/.dotfiles ~/.config/fish
+$ rm -rf ~/.dotfiles $__fish_config_dir
 ```
 
-**Some config files were changed, you can find them using `fd`:**
-
-```console
-$ fd -e backup -e local -H -E Library -d 3 .
-```
-
-And then manually inspect/revert them.
+The bootstrap script would have created a bunch of symlinks that will now be broken.
+You will have to investigate those manually.
+In cases a file already existed, the boostrap script should have created a `.backup` file with the same name.
 
 ## Recommended Software
 
-For macOS, I recommend:
-
-- iTerm: a better terminal emulator;
-
-For both Linux and macOS:
-
-- [`bat`](https://github.com/sharkdp/bat) a `cat` with wings;
+- [`alacritty`](https://github.com/alacritty/alacritty) a cross-platform, OpenGL terminal emulator;
+- [`bat`](https://github.com/sharkdp/bat) a cat(1) clone with wings;
 - [`delta`](https://github.com/dandavison/delta) for better git diffs;
-- [`dog`](https://dns.lookup.dog) the command-line DNS client;
-- [`exa`](https://the.exa.website) a modern replacement for `ls`;
 - [`fd`](https://github.com/sharkdp/fd) a simple, fast and user-friendly alternative to `find`;
-- [`fzf`](https://github.com/junegunn/fzf) for a fuzzy-finder, used in `,t` on vim, for example;
+- [`fzf`](https://github.com/junegunn/fzf) for a fuzzy-finder;
+- [`gum`](https://github.com/charmbracelet/gum) A tool for glamorous shell scripts;
 - [`gh`](https://github.com/cli/cli) for more GitHub integration with the terminal;
 - [`grc`](https://github.com/garabik/grc) to colorize command's outputs;
+- [`kitty`](https://github.com/kovidgoyal/kitty) a cross-platform, fast, feature-rich, GPU based terminal;
 - [`kubectx`](https://github.com/ahmetb/kubectx) for better Kubernetes context and namespace switch;
-- [`ripgrep`](https://github.com/BurntSushi/ripgrep) a faster `grep`;
+- [`neovim`](https://neovim.io) hyperextensible Vim-based text editor;
+- [`starship.rs`](https://starship.rs) the shell we are using;
 
 To install them all with `brew`:
 
 ```console
-$ brew install bat git-delta dog exa fd fzf gh grc kubectx ripgrep
+$ brew install fish git-delta fzf gh grc kubectx starship zoxide fd exa bat alacritty kitty neovim
+```
+
+On Ubuntu:
+
+```console
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+sudo apt install fish grc fzf zoxide fd-find exa bat alacritty kitty neovim
+# TODO: install delta, kubectx
 ```
 
 ## macOS defaults
@@ -119,13 +98,15 @@ And logging out and in again or restart.
 
 ## Themes and fonts being used
 
-Theme is **[Nord](https://nordtheme.com)** and font is **Inconsolata**.
+Gruvbox-material dark and MonoLisa Font.
 
 ## Screenshots
 
-![screenshot 1][scrn1]
+###### neovim with LSP, git signs, etc
+![CleanShot 2022-08-12 at 23 17 57@2x](https://user-images.githubusercontent.com/245435/184464863-b5c6468f-e064-4f53-bbd8-2961f4163bd0.png)
 
-![screenshot 2][scrn2]
+###### neovim telescope
+![CleanShot 2022-08-12 at 23 18 07@2x](https://user-images.githubusercontent.com/245435/184464868-f9f22aea-3333-42a3-b110-0c8a90d90c1b.png)
 
-[scrn1]: /docs/screenshot1.png
-[scrn2]: /docs/screenshot2.png
+###### tmux-sessionizer and tmux tabs with icons
+![CleanShot 2022-08-12 at 23 18 13@2x](https://user-images.githubusercontent.com/245435/184464869-835bdad2-5ca6-4998-b550-3622bb05c82c.png)

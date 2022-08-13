@@ -23,9 +23,15 @@ if command -qs code
     and git config --global mergetool.vscode.cmd 'code --wait $MERGED'
 end
 
+if command -qs gh
+	abbr -a 'grv' 'gh repo view -w'
+	abbr -a 'gpv' 'gh pr view -w'
+end
+
+# abbr -a g 'git'
 # abbr -a gl 'git pull --prune'
 # abbr -a glg 'git log --graph --decorate --oneline --abbrev-commit'
-# abbr -a glga 'glg --all"
+# abbr -a glga 'glg --all'
 # abbr -a gp 'git push origin HEAD'
 # abbr -a gpa 'git push origin --all'
 # abbr -a gd 'git diff'
@@ -41,9 +47,11 @@ end
 # abbr -a glnext 'git log --oneline (git describe --tags --abbrev=0 @^)..@'
 # abbr -a gw 'git switch'
 # abbr -a gm 'git switch (git main-branch)'
-# abbr -a gms 'git switch (git main-branch); git sync'
+# abbr -a gms 'git switch (git main-branch); and git sync'
+# abbr -a egms 'e; git switch (git main-branch); and git sync'
 # abbr -a gwc 'git switch -c'
 
+abbr -a g 'git'
 abbr -a gs 'git status -sb'
 abbr -a gl 'git log --graph --decorate --abbrev-commit --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
 abbr -a gr 'git pull -r'

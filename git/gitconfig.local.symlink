@@ -1,5 +1,5 @@
-[difftool "diffmerge"]
-	cmd = diffmerge $LOCAL $REMOTE
+# vi: ft=gitconfig
+
 [alias]
 	co = checkout
 	count = shortlog -sn
@@ -8,7 +8,8 @@
 	changed = show --pretty=\"format:\" --name-only
 	fm = fetch-merge
 	please = push --force-with-lease
-	commend = commit --amend --no-edit
+	commit = commit -s
+	commend = commit -s --amend --no-edit
 	lt = log --tags --decorate --simplify-by-decoration --oneline
 [color]
 	diff = auto
@@ -22,30 +23,34 @@
 	autocrlf = input
 	whitespace = trailing-space,space-before-tab
 	precomposeunicode = true
+[advice]
+	addEmptyPathspec = false
+[gpg]
+	program = gpg
 [apply]
 	whitespace = nowarn
 [help]
 	autocorrect = 1
-[merge]
-	tool = diffmerge
-[mergetool "diffmerge"]
-	cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
-	trustExitCode = true
-	keepBackup = false
 [diff]
 	tool = diffmerge
-[difftool]
-	prompt = false
 [grep]
 	extendRegexp = true
 	lineNumber = true
 [push]
+	autoSetupRemote = true
 	default = simple
 [submodule]
 	fetchJobs = 4
 [commit]
 	template = ~/.dotfiles/git/template.txt
+	gpgsign = true
+[tag]
+	gpgsign = true
 [log]
 	showSignature = false
+[pull]
+    ff = only
 [init]
 	defaultBranch = main
+[format]
+	signOff = true
