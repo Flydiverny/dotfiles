@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "Last 30 days:"
+
+
+RESULT=""
+
+for dir in $(fd -H '^.git$' -t d); do
+	dir=$(dirname $dir)
+	cd $dir
+	echo -ne "Checking $dir\033[0K\r"
+
+	STATE=$(git-stats | tr '\n' '\t')
+
+	if [[ -n $STATE ]]; then
+		LAST=$(printf "%-30s %s\n" ${dir} "${STATE}")
+		RESULT+="$LAST\n"
+	fi
+
+	cd - >/dev/null
+done
+
+# get reset color
+RESET=$(tput sgr0)
+
+
+echo -e $RESULT | rg -v $'Lines: \+\033\[32m0\033\[0m \-\033\[31m0\033\[0m' | column --table
