@@ -5,11 +5,14 @@ abbr -a nr npm-run
 abbr -a yr npm-run
 
 if command -qs exa
+	abbr -a ls 'exa'
 	abbr -a l 'exa -lh --icons'
+	abbr -a la 'exa -lah --icons'
 	abbr -a ll 'exa -l --icons'
 	abbr -a lt 'exa -l --icons --tree --level=2'
 else
 	abbr -a l 'ls -lAh'
+	abbr -a la 'ls -A'
 	abbr -a ll 'ls -l'
 end
 
