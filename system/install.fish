@@ -2,7 +2,7 @@
 abbr -a less 'less -r'
 
 abbr -a nr npm-run
-abbr -a yr npm-run
+abbr -a yr yarn-run
 
 if command -qs exa
 	abbr -a ls 'exa'

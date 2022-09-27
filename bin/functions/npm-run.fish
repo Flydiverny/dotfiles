@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
-function npm-run -d npm-run
-    if ! command -qa fzf
+function __run_yarn_npm
+	if ! command -qa fzf
         echo "fzf not found"
         return 1
     end
@@ -15,34 +15,38 @@ function npm-run -d npm-run
         return 1
     end
 
-    if test -f package-lock.json
-        set RUNNER npm
-    end
+    # if test -f package-lock.json
+    #     set RUNNER npm
+    # end
 
-    if test -f yarn.lock
-        set RUNNER yarn
-    end
+    # if test -f yarn.lock
+    #     set RUNNER yarn
+    # end
 
     if test -n "$argv"
         $RUNNER run $argv
         return $status
     end
 
-    set commands (jq -r ".scripts | keys[]" <package.json | string split0)
+    set -l commands (jq -r ".scripts | keys[]" <package.json)
 
     # Only do workspaces for yarn
-    if test "$RUNNER" = yarn
-        if set workspaces (jq -r '.workspaces.packages[]' <package.json 2>/dev/null)
-            for ws in $workspaces
-                if ! test -f "$ws/package.json"
-                    continue
-                end
-
-                set scripts (jq -r ".scripts | keys[] | \"$ws \(.)\"" <"$ws/package.json" 2>/dev/null | string split0)
-                set commands $commands$scripts
-            end
-        end
+    if set workspaces (jq -r '.workspaces.packages[]' <package.json 2>/dev/null)
+    else if set workspaces (jq -r '.workspaces[]' <package.json 2>/dev/null)
     end
+
+	for ws in packages/* $workspaces
+		if ! test -f "$ws/package.json"
+			continue
+		end
+
+		set -l scripts (jq -r ".scripts | keys[] | \"$ws \(.)\"" <"$ws/package.json" 2>/dev/null)
+		for script in $scripts
+			if test -n "$script"
+				set -a commands $script
+			end
+		end
+	end
 
     # shellcheck disable=SC2016
     set previewScript '
@@ -67,7 +71,7 @@ function npm-run -d npm-run
     set previewScript (string replace "__RUNNER__" "$RUNNER" "$previewScript")
 
     # user aborted, we exit
-    if ! set selection (echo "$commands" | fzf --preview-window down:2 --preview "$previewScript")
+    if ! set selection (printf %s\n $commands | fzf --preview-window down:2 --preview "$previewScript")
         return $status
     end
 
@@ -86,4 +90,14 @@ function npm-run -d npm-run
     commandline -f execute
 end
 
+
+function npm-run -d npm-run
+	RUNNER=npm __run_yarn_npm
+end
+
+function yarn-run -d yarn-run
+	RUNNER=yarn __run_yarn_npm
+end
+
 complete --command npm-run --w 'npm run'
+complete --command yarn-run --w 'yarn run'
