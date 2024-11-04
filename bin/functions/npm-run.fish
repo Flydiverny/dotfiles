@@ -79,7 +79,12 @@ function __run_yarn_npm
 
     if test (count $command) -eq 2
         set script $command[2]
-        set cwd " --cwd $command[1]"
+        if test "$RUNNER" = 'yarn'
+            set cwd " --cwd $command[1]"
+        end
+        if test "$RUNNER" = 'npm'
+            set cwd " -w $command[1]"
+        end
     else
         set script $command[1]
     end
