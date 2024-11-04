@@ -75,14 +75,14 @@ In cases a file already existed, the boostrap script should have created a `.bac
 To install them all with `brew`:
 
 ```console
-$ brew install fish git-delta fzf gh grc kubectx starship zoxide fd exa bat alacritty kitty neovim
+$ brew install fish git-delta fzf gh grc kubectx starship zoxide fd eza bat alacritty kitty neovim
 ```
 
 On Ubuntu:
 
 ```console
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-sudo apt install fish grc fzf zoxide fd-find exa bat alacritty kitty neovim
+sudo apt install fish grc fzf zoxide fd-find eza bat alacritty kitty neovim
 # TODO: install delta, kubectx
 ```
 

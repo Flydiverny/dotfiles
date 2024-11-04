@@ -4,12 +4,12 @@ abbr -a less 'less -r'
 abbr -a nr npm-run
 abbr -a yr yarn-run
 
-if command -qs exa
-	abbr -a ls 'exa'
-	abbr -a l 'exa -lh --icons'
-	abbr -a la 'exa -lah --icons'
-	abbr -a ll 'exa -l --icons'
-	abbr -a lt 'exa -l --icons --tree --level=2'
+if command -qs eza
+	abbr -a ls 'eza'
+	abbr -a l 'eza -lh --icons'
+	abbr -a la 'eza -lah --icons'
+	abbr -a ll 'eza -l --icons'
+	abbr -a lt 'eza -l --icons --tree --level=2'
 else
 	abbr -a l 'ls -lAh'
 	abbr -a la 'ls -A'

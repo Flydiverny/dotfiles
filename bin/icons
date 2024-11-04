@@ -20,7 +20,7 @@ switch $argv[1]
 		echo 
 	case docker docker-compose
 		echo 
-	case exa lf ls nnn ranger
+	case eza lf ls nnn ranger
 		echo פּ
 	case elixir mix
 		echo 
