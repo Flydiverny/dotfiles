@@ -31,8 +31,7 @@
 	whitespace = nowarn
 [help]
 	autocorrect = 1
-[diff]
-	tool = diffmerge
+
 [grep]
 	extendRegexp = true
 	lineNumber = true
@@ -49,7 +48,9 @@
 [log]
 	showSignature = false
 [pull]
-    ff = only
+	rebase = true
+[rebase]
+	autostash = true
 [init]
 	defaultBranch = main
 [format]
