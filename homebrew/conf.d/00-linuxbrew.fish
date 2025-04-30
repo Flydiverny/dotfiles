@@ -1,1 +1,3 @@
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+if test (uname) != Darwin
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+end

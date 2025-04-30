@@ -145,5 +145,9 @@
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	}
+	},
+"eslint.useFlatConfig": true,
+"[yaml]": {
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
+},
 }
