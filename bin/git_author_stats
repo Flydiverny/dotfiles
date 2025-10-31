@@ -1,0 +1,76 @@
+#!/usr/bin/env fish
+
+# Script to count commits by author across multiple Git repositories
+# Usage: ./git_author_stats.fish [directory]
+
+# Process arguments
+set base_dir "."
+if test (count $argv) -gt 0
+    set base_dir $argv[1]
+end
+
+# Ensure the base directory exists
+if not test -d $base_dir
+    echo "Error: Directory '$base_dir' does not exist"
+    exit 1
+end
+
+# Initialize arrays to store author names and their commit counts
+set -g author_names
+set -g author_counts
+
+echo "Scanning repositories in $base_dir..."
+echo "----------------------------------------"
+
+# Find all git repositories in the given directory
+for repo_path in (find $base_dir -maxdepth 2 -type d -name ".git" | sort)
+    # Get the parent directory of .git, which is the repo directory
+    set repo_dir (dirname $repo_path)
+    echo "Processing repository: $repo_dir"
+
+    # Change to the repository directory
+    pushd $repo_dir
+
+    # Get commit counts by author in this repository
+    for line in (git shortlog -sn --all --no-merges | sed 's/^\s*[0-9]\+\s\+//')
+		# echo "line: $line"
+        # Get commit count for this author in this repo
+        set count (git shortlog -sn --all --no-merges | grep -F "$line" | sed 's/^\s*\([0-9]\+\).\+$/\1/')
+
+        # Check if we've seen this author before
+        set -l author_index (contains -i -- $line $author_names)
+
+        if test -z "$author_index"
+            # This is a new author, add them to our lists
+            set -a author_names $line
+            set -a author_counts $count
+        else
+            # Update the count for an existing author
+            set author_counts[$author_index] (math "$author_counts[$author_index] + $count")
+        end
+    end
+
+    # Return to the previous directory
+    popd
+end
+
+echo ""
+echo "Total Commit Counts by Author Across All Repositories"
+echo "-------------------------------------------------------"
+
+# Create a temporary file to store results for sorting
+set -l temp_file (mktemp)
+
+# Write results to temporary file for sorting
+for i in (seq (count $author_names))
+    echo "$author_counts[$i] $author_names[$i]" >> $temp_file
+end
+
+# Sort results by commit count (numerically in descending order)
+sort -rn $temp_file
+
+# Clean up
+rm $temp_file
+
+echo ""
+echo "Analysis complete!"

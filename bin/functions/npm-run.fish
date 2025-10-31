@@ -100,9 +100,14 @@ function npm-run -d npm-run
 	RUNNER=npm __run_yarn_npm
 end
 
+function pnpm-run -d pnpm-run
+	RUNNER=pnpm __run_yarn_npm
+end
+
 function yarn-run -d yarn-run
 	RUNNER=yarn __run_yarn_npm
 end
 
 complete --command npm-run --w 'npm run'
+complete --command pnpm-run --w 'pnpm run'
 complete --command yarn-run --w 'yarn run'

@@ -1,0 +1,37 @@
+#!/bin/bash
+repos=0
+# Use an associative array to store author -> commit count
+set -g author_names
+set -g author_counts
+
+for dir in $(fd -H '^.git$' -t d)
+do
+	repos=$((repos + 1))
+	dir=$(dirname $dir)
+	cd $dir
+
+	for author in (git log --pretty=format:'%an')
+		if test -n "$author"
+			set key (string escape -- "$author")
+			if set -q author_counts[$key]
+				set author_counts[$key] (math $author_counts[$key] + 1)
+			else
+				set author_counts[$key] 1
+			end
+		end
+	end
+
+	cd - > /dev/null
+done
+
+
+
+
+echo ""
+echo "Total commits per author:"
+for key in (printf "%s\n" (keys author_counts) | sort)
+    set author (string unescape -- "$key")
+    echo "$author: $author_counts[$key]"
+end
+
+echo "Repos $repos"

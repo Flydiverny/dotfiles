@@ -1,0 +1,82 @@
+#!/usr/bin/env fish
+
+# Script to find branches that either have unpushed commits
+# OR have no remote tracking branch configured at all.
+
+set start_dir (pwd)
+echo "Scanning directories under $start_dir for unpushed or untracked branches..."
+echo ""
+
+set found_any false
+
+for dir in */
+    # Check if it's a directory and contains a .git dir/file
+    if test -d "$dir/.git" -o -f "$dir/.git"
+        pushd "$dir" > /dev/null
+        set repo_path (pwd)
+
+        # Get branch name, full upstream ref name, and trackshort status
+        # Use %09 (tab) as a separator for easier parsing
+        set branch_statuses (git for-each-ref --format='%(refname:short)%09%(upstream)%09%(upstream:trackshort)' refs/heads/ 2>/dev/null)
+
+        if test $status -ne 0
+            echo "Error: Could not retrieve branch status for $repo_path"
+            popd > /dev/null
+            continue # Skip to the next directory
+        end
+
+        set findings # Initialize an empty list for findings in this repo
+
+        # Process the output line by line
+        for line in (string split \n -- $branch_statuses)
+            # Skip empty lines if any
+            if test -z "$line"; continue; end
+
+            # Split line by the tab character (%09 used in format)
+            set parts (string split \t -- "$line")
+            set branch_name $parts[1]
+            # Check if upstream field (parts[2]) exists and is non-empty
+            set upstream_exists (test (count $parts) -gt 1 && test -n "$parts[2]"; and echo true; or echo false)
+            # Get track status (parts[3]) if it exists
+            set track_status ""
+            if test (count $parts) -gt 2
+                set track_status $parts[3]
+            end
+
+            # Flag to check if we already reported this branch
+            set reported false
+
+            # Check 1: Is it ahead of its tracked remote?
+            if string match --quiet --regex 'ahead' -- "$track_status"
+                 set -a findings "  - $branch_name ($track_status) [Unpushed commits]"
+                 set reported true
+                 set found_any true # Mark that we found something reportable
+            end
+
+            # Check 2: Does it have no upstream configured at all? (and wasn't already reported as ahead)
+            # Note: A branch could theoretically be 'ahead' but have its upstream manually removed later,
+            # although that's unusual. This logic prioritizes showing 'ahead' status if present.
+            if not $reported and not $upstream_exists
+                set -a findings "  - $branch_name [No remote tracking]"
+                set found_any true # Mark that we found something reportable
+            end
+        end
+
+        # If we found any reportable branches in this repo, print them
+        if test (count $findings) -gt 0
+            echo "Findings in: $repo_path"
+            for item in $findings
+                echo "$item"
+            end
+            echo "" # Add a newline for better readability
+        end
+
+        popd > /dev/null
+    end
+end
+
+if not $found_any
+    echo "No unpushed commits or branches without remote tracking found in any repositories."
+end
+
+echo "Scan complete."

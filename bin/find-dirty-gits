@@ -1,27 +1,38 @@
 #!/bin/bash
 
+# Define color variables using tput
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+RESET=$(tput sgr0)
+
+printf "%-40s %-9s %s\n" "DIR" "STASHES" "STATE"
+printf "%-40s %-9s %s\n" "=======" "=======" "======="
+# Find all git repositories in the current directory and its subdirectories
 for dir in $(fd -H '^.git$' -t d)
 do
-    dir=$(dirname $dir)
-    cd $dir
+	dir=$(dirname $dir)
+	cd $dir
 
-    STATE=""
+	STATE=""
+	STASHES=$(git stash list | wc -l)
 
-    if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-        STATE="untracked-files ${STATE}"
-    fi
+	if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+		STATE="${YELLOW}?? untracked-files${RESET} ${STATE}"
+	fi
 
-    if ! git diff --quiet 2> /dev/null; then
-        STATE="modified ${STATE}"
-    fi
+	if ! git diff --quiet 2> /dev/null; then
+		STATE="${RED}modified${RESET} ${STATE}"
+	fi
 
-    if ! git diff --cached --quiet 2> /dev/null; then
-        STATE="staged ${STATE}"
-    fi
+	if ! git diff --cached --quiet 2> /dev/null; then
+		STATE="${GREEN}staged${RESET} ${STATE}"
+	fi
 
-    if [[ -n $STATE ]]; then
-        printf "%-30s %s\n" ${dir} "${STATE}"
-    fi
 
-    cd - > /dev/null
+	if [[ -n "${STATE}" || "${STASHES}" -gt 0 ]]; then
+		printf "%-40s %-9s %-30s\n" ${dir} "${STASHES}" "${STATE}"
+	fi
+
+	cd - > /dev/null
 done

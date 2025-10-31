@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for dir in $(fd -H '^.git$' -t d)
+do
+	dir=$(dirname $dir)
+	cd $dir
+
+	git-delete-local-merged
+
+	cd - > /dev/null
+done
