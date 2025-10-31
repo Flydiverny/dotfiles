@@ -13,7 +13,7 @@ do
 	for author in (git log --pretty=format:'%an')
 		if test -n "$author"
 			set key (string escape -- "$author")
-			if set -q author_counts[$key]
+			if set -l author_counts[$key]
 				set author_counts[$key] (math $author_counts[$key] + 1)
 			else
 				set author_counts[$key] 1
