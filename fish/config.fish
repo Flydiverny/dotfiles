@@ -125,6 +125,14 @@ status is-interactive; and begin
     if command -qs rg
         abbr --save grep 'rg'
     end
+
+    # Mac os specific
+    if test (uname) = Darwin
+        alias airport=/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport
+        alias afk='open -a /System/Library/CoreServices/ScreenSaverEngine.app'
+
+        fish_add_path -a /opt/homebrew/bin || true
+    end
 end
 
 if test -f ~/.localrc.fish
