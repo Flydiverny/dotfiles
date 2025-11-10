@@ -7,7 +7,6 @@ set -Ux PROJECTS ~/Code
 
 fish_add_path -a $DOTFILES/bin $HOME/.bin
 
-
 status is-interactive; and begin
     source "/home/flydiverny/.config/ee/shell/ee.fish"
 
