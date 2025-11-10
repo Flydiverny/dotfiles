@@ -34,12 +34,17 @@ status is-interactive; and begin
 
 
     # Aliases
-
     abbr --add less less -r
 
     abbr --add nr npm-run
     abbr --add yr yarn-run
 
+    # TF
+    abbr --add tf terraform
+    abbr --add tg terragrunt
+
+
+    # ls
     if command -qs eza
         abbr --add ls eza
         abbr --add l eza -lh --icons
@@ -53,8 +58,6 @@ status is-interactive; and begin
     end
 
     # Git
-
-
     if command -qs gh
         abbr --add grv 'gh repo view -w'
         abbr --add gpv 'gh pr view -w'
@@ -114,6 +117,14 @@ status is-interactive; and begin
     # abbr --add kvs "kubectl view-secret"
     # abbr --add kgno 'kubectl get no --sort-by=.metadata.creationTimestamp'
     # abbr --add kdrain 'kubectl drain --ignore-daemonsets --delete-local-data'
+
+    if command -qa bat
+        abbr --save cat bat
+        set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'"
+    end
+    if command -qs rg
+        abbr --save grep 'rg'
+    end
 end
 
 if test -f ~/.localrc.fish
