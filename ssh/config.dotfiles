@@ -1,11 +1,19 @@
 # vi: ft=sshconfig
 
-Host *
+# causes git pull to take 5-6 sec on mac...
+#Host *
 	ServerAliveInterval 60
-	CanonicalizeHostName yes
-	CanonicalizeFallbackLocal yes
-	CanonicalDomains local
+#	CanonicalizeHostName yes
+#	CanonicalizeFallbackLocal yes
+#	CanonicalDomains local
 
 Host localhost
 	UserKnownHostsFile /dev/null
 	StrictHostKeyChecking no
+
+Host github.com
+  HostName github.com
+  User git
+  ControlMaster auto
+  ControlPath ~/.ssh/cm-%r@%h:%p
+  ControlPersist 10m

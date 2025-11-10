@@ -1,3 +1,3 @@
 #!/usr/bin/env fish
-abbr -a tf terraform
-abbr -a tg terragrunt
+alias --save tf=terraform
+alias --save tg=terragrunt

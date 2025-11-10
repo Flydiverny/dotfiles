@@ -1,5 +1,6 @@
 # vi: ft=gitconfig
-
+[include]
+    path = .gitconfig.gleerups
 [alias]
 	co = checkout
 	count = shortlog -sn
