@@ -26,6 +26,10 @@ status is-interactive; and begin
         set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
     end
     # homebrew end
+
+    # Disable fish greeting
+    set fish_greeting
+
 end
 
 if test -f ~/.localrc.fish
