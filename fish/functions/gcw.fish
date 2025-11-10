@@ -42,6 +42,17 @@ function gcw -d "Git checkout worktree - switch to existing or create new worktr
                 # Worktree exists, switch to it
                 echo "Switching to existing worktree for branch '$target_branch': $existing_worktree"
                 cd "$existing_worktree"
+                # Ensure upstream tracking is configured
+                if not git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1
+                    if git show-ref --verify --quiet "refs/remotes/origin/$target_branch"
+                        git branch --set-upstream-to="origin/$target_branch" "$target_branch" 2>/dev/null
+                        if test $status -eq 0
+                            echo "Configured upstream tracking to origin/$target_branch"
+                        else
+                            echo "Warning: Failed to set upstream tracking for $target_branch"
+                        end
+                    end
+                end
             else
                 # Create new worktree
                 set main_worktree (git worktree list | head -1 | awk '{print $1}')
@@ -69,6 +80,17 @@ function gcw -d "Git checkout worktree - switch to existing or create new worktr
                 if test $status -eq 0
                     echo "Successfully created worktree. Switching to: $new_worktree_path"
                     cd "$new_worktree_path"
+                    # Ensure upstream tracking is configured (worktree add -b doesn't auto-track)
+                    if not git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1
+                        if git show-ref --verify --quiet "refs/remotes/origin/$target_branch"
+                            git branch --set-upstream-to="origin/$target_branch" "$target_branch" 2>/dev/null
+                            if test $status -eq 0
+                                echo "Configured upstream tracking to origin/$target_branch"
+                            else
+                                echo "Warning: Failed to set upstream tracking for $target_branch"
+                            end
+                        end
+                    end
                 else
                     echo "Failed to create worktree for branch '$target_branch'"
                     return 1
