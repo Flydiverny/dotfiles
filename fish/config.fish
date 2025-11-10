@@ -90,7 +90,8 @@ status is-interactive; and begin
 
     abbr --add gsu 'git submodule update --init --recursive'
 
-
+    abbr -add d docker
+    abbr -add dc 'docker compose'
     # Kubernetes
     # re enable some day
     # abbr --add kx kubectx
@@ -113,8 +114,6 @@ status is-interactive; and begin
     # abbr --add kvs "kubectl view-secret"
     # abbr --add kgno 'kubectl get no --sort-by=.metadata.creationTimestamp'
     # abbr --add kdrain 'kubectl drain --ignore-daemonsets --delete-local-data'
-
-
 end
 
 if test -f ~/.localrc.fish
