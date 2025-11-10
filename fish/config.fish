@@ -34,7 +34,6 @@ status is-interactive; and begin
     # Disable fish greeting
     set fish_greeting
 
-
     # Aliases
     abbr --add less less -r
 
@@ -44,7 +43,6 @@ status is-interactive; and begin
     # TF
     abbr --add tf terraform
     abbr --add tg terragrunt
-
 
     # ls
     if command -qs eza
@@ -95,8 +93,8 @@ status is-interactive; and begin
 
     abbr --add gsu 'git submodule update --init --recursive'
 
-    abbr -add d docker
-    abbr -add dc 'docker compose'
+    abbr --add d docker
+    abbr --add dc 'docker compose'
     # Kubernetes
     # re enable some day
     # abbr --add kx kubectx
@@ -121,11 +119,11 @@ status is-interactive; and begin
     # abbr --add kdrain 'kubectl drain --ignore-daemonsets --delete-local-data'
 
     if command -qa bat
-        abbr --save cat bat
+        abbr --add cat bat
         set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'"
     end
     if command -qs rg
-        abbr --save grep 'rg'
+        abbr --add grep rg
     end
 
     # Mac os specific
