@@ -91,6 +91,30 @@ status is-interactive; and begin
     abbr --add gsu 'git submodule update --init --recursive'
 
 
+    # Kubernetes
+    # re enable some day
+    # abbr --add kx kubectx
+    # abbr --add kn kubens
+
+    # abbr --add k kubectl
+    # abbr --add sk 'kubectl -n kube-system'
+    # abbr --add kg 'kubectl get'
+    # abbr --add kgp 'kubectl get po'
+    # abbr --add kga 'kubectl get --all-namespaces'
+    # abbr --add kd 'kubectl describe'
+    # abbr --add kdp 'kubectl describe po'
+    # abbr --add krm 'kubectl delete'
+    # abbr --add ke 'kubectl edit'
+    # abbr --add kex 'kubectl exec -it'
+    # abbr --add kdebug 'kubectl run -i -t debug --rm --image=caarlos0/debug --restart=Never'
+    # abbr --add knrunning 'kubectl get pods --field-selector=status.phase!=Running'
+    # abbr --add kfails 'kubectl get po -owide --all-namespaces | grep "0/" | tee /dev/tty | wc -l'
+    # abbr --add kimg "kubectl get deployment --output=jsonpath='{.spec.template.spec.containers[*].image}'"
+    # abbr --add kvs "kubectl view-secret"
+    # abbr --add kgno 'kubectl get no --sort-by=.metadata.creationTimestamp'
+    # abbr --add kdrain 'kubectl drain --ignore-daemonsets --delete-local-data'
+
+
 end
 
 if test -f ~/.localrc.fish
