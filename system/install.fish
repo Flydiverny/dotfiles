@@ -3,10 +3,6 @@ if command -qs fdfind
     ln -sf (which fdfind) ~/.bin/fd
 end
 
-# if command -qs fd
-# 	alias --save find='fd'
-# end
-
 if command -qs batcat
     ln -sf (which batcat) ~/.bin/bat
 end
