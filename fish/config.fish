@@ -52,6 +52,45 @@ status is-interactive; and begin
         abbr --add ll ls -l
     end
 
+    # Git
+
+
+    if command -qs gh
+        abbr --add grv 'gh repo view -w'
+        abbr --add gpv 'gh pr view -w'
+    end
+
+    # abbr --add g 'git'
+    abbr --add gs 'git status -sb'
+    abbr --add gl 'git log --graph --decorate --abbrev-commit --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+    abbr --add gr 'git pull -r'
+    abbr --add gp 'git pull -r; and git push origin HEAD; and git link'
+    abbr --add gdc 'git diff --cached'
+    abbr --add gd 'git diff'
+    abbr --add gc 'git commit -sm'
+    abbr --add ga 'git add'
+    abbr --add gaa 'git add -A; and git status -sb'
+
+    abbr --add gdw 'git diff --ignore-space-at-eol -b -w --ignore-blank-lines'
+    abbr --add gdcw 'git diff --ignore-space-at-eol -b -w --ignore-blank-lines --cached'
+
+    abbr --add gsp 'git stash; and git pull -r'
+    abbr --add gspp 'git stash; and git pull -r; and git stash pop'
+
+    abbr --add gnb 'git switch -c'
+
+    abbr --add stash 'git stash'
+    abbr --add master 'git switch (git main-branch)'
+    abbr --add main 'git switch (git main-branch)'
+    abbr --add rebase 'git rebase -i origin/(git main-branch)'
+
+    abbr --add gsm 'git stash; and git checkout master'
+
+    abbr --add gpu 'git push -u origin HEAD'
+
+    abbr --add gsu 'git submodule update --init --recursive'
+
+
 end
 
 if test -f ~/.localrc.fish
