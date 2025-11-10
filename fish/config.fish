@@ -12,8 +12,6 @@ fish_add_path -a $DOTFILES/bin $HOME/.bin
 # set -gx PATH $PATH $HOME/.krew/bin
 
 status is-interactive; and begin
-    source "/home/flydiverny/.config/ee/shell/ee.fish"
-
     # pnpm
     set -gx PNPM_HOME "/home/flydiverny/.local/share/pnpm"
     if not string match -q -- $PNPM_HOME $PATH
