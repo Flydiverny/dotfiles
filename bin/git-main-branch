@@ -1,9 +1,11 @@
 #!/usr/bin/env fish
-set toplevel (git rev-parse --show-toplevel)
-and if test -f $toplevel/.git/refs/remotes/origin/main
-    echo main
-else if test -f $toplevel/.git/refs/heads/main
-    echo main
-else
+function _has_ref --argument refname
+    # git show-ref exits 0 if ref exists. Suppress output.
+    git show-ref --verify --quiet $refname
+end
+
+if _has_ref refs/remotes/origin/master or _has_ref refs/heads/master
     echo master
+else
+    echo main
 end
