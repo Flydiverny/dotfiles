@@ -1,7 +1,12 @@
 #!/usr/bin/env fish
 # the pbpaste script
 if grep -q microsoft /proc/version
-    powershell.exe -command Get-Clipboard | tr -d '\r' | head -n -1
+    # WSL / Windows environment detected
+    powershell.exe -command Get-Clipboard | sed 's/\r$//' | sed -z '$ s/\n$//'
+else if test (uname) = Darwin
+    # macOS environment
+    /usr/bin/pbpaste
 else
+    # Linux (X11) fallback
     xclip -selection clipboard -o
 end

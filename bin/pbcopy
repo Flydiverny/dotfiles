@@ -1,8 +1,14 @@
 #!/usr/bin/env fish
 # the pbcopy script
 if grep -q microsoft /proc/version
+    # WSL / Windows environment detected
     tee <&0 | clip.exe
     exit 0
+else if test (uname) = Darwin
+    # macOS environment
+    /usr/bin/pbcopy <&0
+    exit 0
 else
+    # Linux (X11) fallback
     xclip -selection clipboard
 end
