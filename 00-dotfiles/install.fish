@@ -18,6 +18,3 @@ for f in $DOTFILES/*/conf.d/*.fish
 	ln -sf $f $__fish_config_dir/conf.d/(basename $f)
 end
 
-if test -f ~/.localrc.fish
-	ln -sf ~/.localrc.fish $__fish_config_dir/conf.d/localrc.fish
-end

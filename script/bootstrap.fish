@@ -94,6 +94,10 @@ function install_dotfiles
 
 	link_file $DOTFILES_ROOT/fish/plugins $__fish_config_dir/fish_plugins backup
 		or abort plugins
+	link_file $DOTFILES_ROOT/fish/config.fish $__fish_config_dir/config.fish backup
+		or abort configfish
+	link_file "$DOTFILES_ROOT/fish/functions" "$__fish_config_dir/functions" backup
+		or abort "functions"
 	link_file $DOTFILES_ROOT/fish/nord.theme $__fish_config_dir/themes/nord.theme backup
 		or abort nord.theme
 	link_file $DOTFILES_ROOT/system/bat.config $HOME/.config/bat/config backup
