@@ -9,6 +9,8 @@ set -x GOPATH $PROJECTS/Go
 fish_add_path -a $GOPATH/bin /usr/local/go/bin || true
 fish_add_path -a $DOTFILES/bin $HOME/.bin
 
+# set -gx PATH $PATH $HOME/.krew/bin
+
 status is-interactive; and begin
     source "/home/flydiverny/.config/ee/shell/ee.fish"
 
