@@ -4,7 +4,9 @@ function _has_ref --argument refname
     git show-ref --verify --quiet $refname
 end
 
-if _has_ref refs/remotes/origin/master or _has_ref refs/heads/master
+if _has_ref refs/remotes/origin/main or _has_ref refs/heads/main
+    echo main
+else if _has_ref refs/remotes/origin/master or _has_ref refs/heads/master
     echo master
 else
     echo main
