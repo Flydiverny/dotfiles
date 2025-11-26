@@ -39,7 +39,7 @@ status is-interactive; and begin
     abbr --add yr yarn-run
 
     # TF
-    abbr --add tf terraform
+    abbr --add tf tofu
     abbr --add tg terragrunt
 
     # ls
